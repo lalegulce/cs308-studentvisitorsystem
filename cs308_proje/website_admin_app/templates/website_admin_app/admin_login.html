@@ -1,0 +1,39 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>Admin Login Page</title>
+</head>
+<body>
+<div class="col-md-4 mt-4">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ 'alert alert-info' }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+<div class="offset-md-4 mt-2">
+    <h1 style="margin-left: 70px">Admin Login Page</h1>
+</div>
+<div class="offset-md-4 col-md-4 mt-4">
+    <form action="login-check/" method="post">
+        {% csrf_token %}
+        {{ login_form|crispy}}
+        <p>* Fields are required</p>
+        <input type="submit" value="Login" name='login-check'>
+    </form>
+</div>
+</body>
+</html>

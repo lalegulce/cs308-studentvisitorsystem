@@ -1,0 +1,21 @@
+{% extends 'appointment_app/base.html' %}
+
+{% block content %}
+<div class="starter-template form-wrap justify-content-center">
+	<div class="row col-lg-2">
+		<a class="btn btn-info left" href="{% url 'appointment_app:calendar' %}"> Calendar </a>
+	</div>
+	<h2>My Pending Appointments</h2>
+	<ul>
+		{% for item in list %}
+		<a href="/appointment_app/appointment/editRequest/{{item.appointment_id}}">
+			<li>Uni Name: {{item.university.university_name}}</li>
+			<li>Starting Time: {{item.appointment_date_start}}</li>
+			<li>Finishing Time: {{item.appointment_date_end}}</li>
+			<li>Capacity: {{item.capacity}}</li><hr>
+		</a>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}
+

@@ -1,0 +1,250 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>StudentRecruiter: University Student Visit Management</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="/static/css/linearicons.css">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/magnific-popup.css">
+	<link rel="stylesheet" href="/static/css/nice-select.css">
+	<link rel="stylesheet" href="/static/css/animate.min.css">
+	<link rel="stylesheet" href="/static/css/owl.carousel.css">
+	<link rel="stylesheet" href="/static/css/customhighschool.css">
+	<link rel="stylesheet" href="/static/css/tabs.css">
+</head>
+
+<body>
+
+	<header id="header" id="home">
+		<div class="container">
+			<div class="row align-items-center justify-content-between d-flex">
+				<div id="logo">
+					<a href="/"><img src="img/logo.png" alt="" title="" /></a>
+				</div>
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li class="menu-active"><a href='{% url "loginhomepage" %}'>Home</a></li>
+						<li><a href='/appointment_app/calendar'>Calendar</a></li>
+						<li><a href="#">Contact Us</a></li>
+						<!--<li><a class="ticker-btn" href="#">Login</a></li>-->
+						<li><a class="ticker-btn" href='{% url "userlogout" %}'>LogOut</a></li>
+
+					</ul>
+				</nav><!-- #nav-menu-container -->
+			</div>
+		</div>
+	</header><!-- #header -->
+
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+
+		}
+
+		div.contxx {
+			margin-left: auto;
+			margin-right: auto;
+			padding-left: 10px;
+			border: 2px inset rgb(220, 140, 245);
+			height: auto;
+		}
+
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		img.imgxx{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<!-- start banner Area -->
+	<section class="banner-area relative" id="home">
+		<div class="overlay overlay-bg"></div>
+		<div class="container">
+			<div class="row fullscreen align-items-center justify-content-center">
+				<div class="banner-content col-lg-12" style="padding-top: 16;">
+					<div class="jumbotron">
+						<div class="row" style="margin-top: -35;">
+							<div class="col-sm-4">
+								<div class="contxx">
+									<div class="img">
+										<img class="img-highlogo" src="{{ highschool.school_image.url }}" alt="highlogo"
+											width="280" height="280" style="margin-bottom: -10;">
+									</div>
+
+									<!-- <li><a href='/appointment_app/calendar'>Callendar</a></li> -->
+
+									<p
+										style="text-align:center; padding-top: 10;padding-right: 10; font-size: 20; padding-bottom: 10;">
+										<strong>{{ highschool.school_name }}</strong></p>
+									<p style="font-size: 15"><strong>Address:</strong>&nbsp;
+										{{ highschool.school_address }}</p>
+									<p style="font-size: 15"><strong>Email:</strong>&nbsp; {{ highschool.school_mail }}
+									</p>
+									<p style="font-size: 15"><strong>Phone:&nbsp;</strong>
+										{{ highschool.school_contact_number }}</p>
+									<p style="font-size: 15"><strong>Responsible Person:&nbsp;</strong>
+										{{ highschool.responsible_person_first_name }}
+										{{ highschool.responsible_person_last_name }}</p>
+									<p style="font-size: 15"><strong>Responsible Person Mail:&nbsp;</strong>
+										{{ highschool.responsible_person_mail }}</p>
+
+									<ul class="row">
+										<a class="nav-link" style="color: #334366;"
+											href='http://127.0.0.1:8000/highschool_app/profile/edit'>Edit profile</a>
+										<a class="nav-link" style="color: #334366;"
+											href='http://127.0.0.1:8000/highschool_app/profile/editimage/'>Edit
+											image</a>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm">
+								<!-- Tab links -->
+								<div class="tab">
+									<button class="tablinks" onclick="opentabs(event, 'Time Line')"
+										id="defaultOpen">Time Line</button>
+									<button class="tablinks" onclick="opentabs(event, 'Calendar')">EMPTY TAB</button>
+								</div>
+
+								<!-- Tab content -->
+								<div id="Time Line" class="tabcontent">
+									{% block content %}
+									{% for date in calendar %}
+									<p>You haved visited <span
+											style="color:rgb(151, 5, 196);"><strong>{{date.university}}</strong></span>
+										on {{date.appointment_date_start}} with {{date.capacity}} students.</p>
+
+									{% endfor %}
+									{% endblock %}
+								</div>
+
+								<div id="Calendar" class="tabcontent">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+	</section>
+	<!-- End banner Area -->
+
+	<!-- Start features Area -->
+
+	<!-- End features Area -->
+
+	<!-- Start popular-post Area -->
+	<!-- <section class="popular-post-area pt-100">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="active-popular-post-carusel">
+
+				</div>
+			</div>
+		</div>
+	</section> -->
+	<!-- End popular-post Area -->
+
+	<!-- Start feature-cat Area -->
+
+	<!-- End feature-cat Area -->
+
+	<!-- Start post Area -->
+	<!-- End post Area -->
+
+
+	<!-- Start callto-action Area -->
+	<!-- End calto-action Area -->
+
+	<!-- Start download Area -->
+
+	<!-- End download Area -->
+
+	<!-- start footer Area -->
+	<!--			<footer class="footer-area section-gap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6  col-md-12">
+							<div class="single-footer-widget newsletter">
+								<h6>Newsletter</h6>
+								<p>You can trust us. We only send new university options, not a single spam.</p>
+								<div id="mc_embed_signup">
+									<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+
+										<div class="form-group row" style="width: 100%">
+											<div class="col-lg-8 col-md-12">
+												<input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
+												<div style="position: absolute; left: -5000px;">
+													<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+												</div>
+											</div>
+
+											<div class="col-lg-4 col-md-12">
+												<button class="nw-btn primary-btn">Subscribe<span class="lnr lnr-arrow-right"></span></button>
+											</div>
+										</div>
+										<div class="info"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>-->
+	<!-- End footer Area -->
+
+	<script src="/static/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="/static/js/vendor/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+	<script src="/static/js/easing.min.js"></script>
+	<script src="/static/js/hoverIntent.js"></script>
+	<script src="/static/js/superfish.min.js"></script>
+	<script src="/static/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/static/js/jquery.magnific-popup.min.js"></script>
+	<script src="/static/js/owl.carousel.min.js"></script>
+	<script src="/static/js/jquery.sticky.js"></script>
+	<script src="/static/js/jquery.nice-select.min.js"></script>
+	<script src="/static/js/parallax.min.js"></script>
+	<script src="/static/js/mail-script.js"></script>
+	<script src="/static/js/main.js"></script>
+	<script src="/static/js/opentabs.js"></script>
+
+</body>
+
+</html>

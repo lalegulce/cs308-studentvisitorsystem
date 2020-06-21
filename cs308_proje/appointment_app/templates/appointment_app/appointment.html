@@ -1,0 +1,46 @@
+{% extends 'appointment_app/base.html' %}
+{% load bootstrap4 %}
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="alert alert-danger">
+    {{ field.label }} <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %}
+{% endfor %}
+{% for error in form.non_field_errors %}
+<div class="alert alert-danger">
+    {{ field.label }} <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="form-wrap justify-content-center">
+    <div class="row col-lg-2">
+        <a class="btn btn-info left" href="{% url 'appointment_app:calendar' %}"> Calendar </a>
+    </div>
+    <form method="post">
+        <table class="form form-table">
+            {% csrf_token %}
+            {{ form }}
+            <tr>
+                {% if check == True %}
+                <div class="row col-lg-4">
+                    <td><button type="submit" name='action' value="delete" class="btn btn-info"> Delete Appointment! </button></td>
+                </div>
+                {% endif %}
+                <div class="row col-lg-6">
+                    <td><button type="submit" name='action' value="make" class="btn btn-info"> Make an Appointment! </button></td>
+                </div>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

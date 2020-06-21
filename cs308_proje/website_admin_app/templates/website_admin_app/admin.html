@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load render_table from django_tables2 %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'website_admin_app/style.css' %}">
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+  <title>ADMIN PAGE</title>
+
+
+</head>
+
+<body>
+
+  <div class="back">
+    <div>
+      <div style="width: 50%;">
+        <button type="button" class="homeBut" onclick="location.href='http://127.0.0.1:8000/'"><i
+            class="fa fa-home"></i>
+        </button>
+      </div>
+      <div style="width: 50%;">
+        <button type="button" onclick="location.href='http://127.0.0.1:8000/website-admin/admin-logout/'">
+          Logout
+      </button>
+      </div>
+    <div class="container-fluid">
+      <div>
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ 'alert alert-info' }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="container-fluid">
+          <div class="row" style="padding-left: 15px; padding-right: 15px">
+            <form action="request-result/" method="post" style="width: 100%">
+              {% csrf_token %}
+              {% render_table university_request_table %}
+              <button class="btn btn-primary mb-2" type="submit" name="accept-selected-universities">Accept Selected
+              </button>
+              <button class="btn btn-primary mb-2" type="submit" name="reject-selected-universities">Reject Selected
+              </button>
+            </form>
+          </div>
+          <div class="row" style="padding-left: 15px; padding-right: 15px">
+            <form action="request-result/" method="post" style="width: 100%">
+              {% csrf_token %}
+              {% render_table high_school_request_table %}
+              <button class="btn btn-primary mb-2" type="submit" name="accept-selected-schools">Accept Selected
+              </button>
+              <button class="btn btn-primary mb-2" type="submit" name="reject-selected-schools">Reject Selected
+              </button>
+            </form>
+          </div>
+          <div class="row" style="padding-left: 15px; padding-right: 15px">
+            <form action="request-result/" method="post" style="width: 100%">
+              {% csrf_token %}
+              {% render_table individual_request_table %}
+              <button class="btn btn-primary mb-2" type="submit" name="accept-selected-individuals">Accept Selected
+              </button>
+              <button class="btn btn-primary mb-2" type="submit" name="reject-selected-individuals">Reject Selected
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{% extends 'appointment_app/base.html' %}
+
+
+{% block content %}
+<div class="form-wrap justify-content-center row col-lg-12">
+    <div class="col-lg-3">
+        <a class="btn btn-info left" href="{% url 'appointment_app:calendar' %}?{{ prev_month }}"> Previous Month </a>
+    </div>
+    {% if user.Object.user_type != 'university' %}
+    <div class="col-lg-3">
+        <a class="btn btn-info right" href="{% url 'appointment_app:appointment_new' %}"> New Appointment </a>
+    </div>
+    <div class="col-lg-3">
+        <a class="btn btn-info right" href="/appointment_app/pendingappointments/"> Pending Appointments </a>
+    </div>
+    {% endif %}
+    <div class="col-lg-3">
+        <a class="btn btn-info right" href="{% url 'appointment_app:calendar' %}?{{ next_month }}"> Next Month </a>
+    </div>
+    {{ calendar }}
+</div>
+{% endblock %}
